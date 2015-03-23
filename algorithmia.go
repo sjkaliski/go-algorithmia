@@ -58,12 +58,8 @@ func (c *Client) Query(user, algo string, input interface{}) (*Response, error) 
 	}
 	defer res.Body.Close()
 
-	decoder := json.NewDecoder(res.Body)
-	if err != nil {
-		return nil, err
-	}
-
 	var response *Response
+	decoder := json.NewDecoder(res.Body)
 	err = decoder.Decode(&response)
 	if err != nil {
 		return nil, err
